@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <windowclass name="krakensyrin_options">
+    <frame>utilitybox</frame>
+    <sizelimits><minimum width="330" height="395" /></sizelimits>
+    <sheetdata>
+
+      <!-- ============================================================
+           Shared controller: defines helpers used by all buttons.
+           All category toggle logic lives here (one copy, not 17).
+           ============================================================ -->
+      <genericcontrol name="ctrl">
+        <bounds rect="0,0,1,1" />
+        <script>
+CATS = { "ship", "comms", "weapons", "damage", "status", "skills", "tasks" }
+
+function getEnabled(catId)
+  if CCSyrin and CCSyrin.isCategoryEnabled then
+    return CCSyrin.isCategoryEnabled(catId)
+  end
+  return true
+end
+
+function setEnabled(catId, val)
+  if CCSyrin and CCSyrin.setCategoryEnabled then
+    CCSyrin.setCategoryEnabled(catId, val)
+  end
+end
+
+function refreshLabel(catId)
+  local ctrl = window["state_" .. catId]
+  if ctrl then
+    ctrl.setValue(getEnabled(catId) and "On" or "Off")
+  end
+end
+
+function refreshAll()
+  for _, c in ipairs(CATS) do
+    refreshLabel(c)
+  end
+  refreshSummary()
+end
+
+function refreshSummary()
+  local n = 0
+  for _, c in ipairs(CATS) do
+    if getEnabled(c) then n = n + 1 end
+  end
+  if window.summary then
+    window.summary.setValue("Enabled categories: " .. n .. " / " .. #CATS)
+  end
+end
+
+function toggle(catId)
+  local val = not getEnabled(catId)
+  setEnabled(catId, val)
+  refreshLabel(catId)
+  refreshSummary()
+end
+
+function enableAll()
+  for _, c in ipairs(CATS) do
+    setEnabled(c, true)
+  end
+  refreshAll()
+end
+
+function disableAll()
+  for _, c in ipairs(CATS) do
+    setEnabled(c, false)
+  end
+  refreshAll()
+end
+
+function onInit()
+  refreshAll()
+end
+        </script>
+      </genericcontrol>
+
+      <!-- Header -->
+      <stringcontrol name="title">
+        <bounds rect="20,18,280,24" />
+        <font>sheetlabel</font>
+        <static text="Kraken Traveller 2E Syrinscape" />
+      </stringcontrol>
+      <stringcontrol name="subtitle">
+        <bounds rect="20,42,280,20" />
+        <font>sheettext</font>
+        <static text="Toggle sound categories on or off." />
+      </stringcontrol>
+      <stringcontrol name="summary">
+        <bounds rect="20,62,280,20" />
+        <font>sheettext</font>
+        <static text="Enabled categories: 0 / 7" />
+      </stringcontrol>
+
+      <!-- Close button -->
+      <buttoncontrol name="button_close">
+        <bounds rect="298,14,20,20" />
+        <frame name="windowmenubar_button" offset="2,2,2,2" />
+        <stateframe>
+          <pressed name="windowmenubar_button_down" offset="2,2,2,2" nobaseframe="true" />
+        </stateframe>
+        <icon>button_toolbar_window_close</icon>
+        <tooltip text="Close" />
+        <script>
+function onInit() setColor(ColorManager.getWindowMenuIconColor()) end
+function onButtonPress() window.close() end
+        </script>
+      </buttoncontrol>
+
+      <!-- ============================================================
+           Category rows:  icon | label | left-arrow | state | right-arrow
+           Each row is at Y offset: 100 + (index * 32)
+           ============================================================ -->
+
+      <!-- Ship Combat (y=100) -->
+      <genericcontrol name="icon_ship"><bounds rect="15,100,20,20" /><icon>action_option</icon></genericcontrol>
+      <label name="label_ship"><bounds rect="40,100,170,20" /><static text="Ship Combat" /><tooltip text="Ship weapons, launches, point defence, damage, criticals, vehicles" /></label>
+      <buttoncontrol name="left_ship"><bounds rect="220,100,12,20" /><icon normal="arrow_sm_left" />
+        <script>function onButtonPress() window.ctrl.toggle("ship") end</script>
+      </buttoncontrol>
+      <stringcontrol name="state_ship"><bounds rect="236,100,40,20" /><font>sheettext</font><static text="Off" /></stringcontrol>
+      <buttoncontrol name="right_ship"><bounds rect="280,100,12,20" /><icon normal="arrow_sm_right" />
+        <script>function onButtonPress() window.ctrl.toggle("ship") end</script>
+      </buttoncontrol>
+
+      <!-- Communications (y=132) -->
+      <genericcontrol name="icon_comms"><bounds rect="15,132,20,20" /><icon>action_option</icon></genericcontrol>
+      <label name="label_comms"><bounds rect="40,132,170,20" /><static text="Communications" /><tooltip text="Initiative, ammo warnings, crew morale, tactics" /></label>
+      <buttoncontrol name="left_comms"><bounds rect="220,132,12,20" /><icon normal="arrow_sm_left" />
+        <script>function onButtonPress() window.ctrl.toggle("comms") end</script>
+      </buttoncontrol>
+      <stringcontrol name="state_comms"><bounds rect="236,132,40,20" /><font>sheettext</font><static text="Off" /></stringcontrol>
+      <buttoncontrol name="right_comms"><bounds rect="280,132,12,20" /><icon normal="arrow_sm_right" />
+        <script>function onButtonPress() window.ctrl.toggle("comms") end</script>
+      </buttoncontrol>
+
+      <!-- Personal Weapons (y=164) -->
+      <genericcontrol name="icon_weapons"><bounds rect="15,164,20,20" /><icon>action_option</icon></genericcontrol>
+      <label name="label_weapons"><bounds rect="40,164,170,20" /><static text="Personal Weapons" /><tooltip text="Ranged and melee weapon attacks" /></label>
+      <buttoncontrol name="left_weapons"><bounds rect="220,164,12,20" /><icon normal="arrow_sm_left" />
+        <script>function onButtonPress() window.ctrl.toggle("weapons") end</script>
+      </buttoncontrol>
+      <stringcontrol name="state_weapons"><bounds rect="236,164,40,20" /><font>sheettext</font><static text="Off" /></stringcontrol>
+      <buttoncontrol name="right_weapons"><bounds rect="280,164,12,20" /><icon normal="arrow_sm_right" />
+        <script>function onButtonPress() window.ctrl.toggle("weapons") end</script>
+      </buttoncontrol>
+
+      <!-- Damage Impacts (y=196) -->
+      <genericcontrol name="icon_damage"><bounds rect="15,196,20,20" /><icon>action_option</icon></genericcontrol>
+      <label name="label_damage"><bounds rect="40,196,170,20" /><static text="Damage Impacts" /><tooltip text="Damage types, armour, weapon mishaps and explosions" /></label>
+      <buttoncontrol name="left_damage"><bounds rect="220,196,12,20" /><icon normal="arrow_sm_left" />
+        <script>function onButtonPress() window.ctrl.toggle("damage") end</script>
+      </buttoncontrol>
+      <stringcontrol name="state_damage"><bounds rect="236,196,40,20" /><font>sheettext</font><static text="Off" /></stringcontrol>
+      <buttoncontrol name="right_damage"><bounds rect="280,196,12,20" /><icon normal="arrow_sm_right" />
+        <script>function onButtonPress() window.ctrl.toggle("damage") end</script>
+      </buttoncontrol>
+
+      <!-- Wounds / Status (y=228) -->
+      <genericcontrol name="icon_status"><bounds rect="15,228,20,20" /><icon>action_option</icon></genericcontrol>
+      <label name="label_status"><bounds rect="40,228,170,20" /><static text="Wounds / Status" /><tooltip text="Wounds, death, unconscious, fire, radiation, healing" /></label>
+      <buttoncontrol name="left_status"><bounds rect="220,228,12,20" /><icon normal="arrow_sm_left" />
+        <script>function onButtonPress() window.ctrl.toggle("status") end</script>
+      </buttoncontrol>
+      <stringcontrol name="state_status"><bounds rect="236,228,40,20" /><font>sheettext</font><static text="Off" /></stringcontrol>
+      <buttoncontrol name="right_status"><bounds rect="280,228,12,20" /><icon normal="arrow_sm_right" />
+        <script>function onButtonPress() window.ctrl.toggle("status") end</script>
+      </buttoncontrol>
+
+      <!-- Skill Rolls (y=260) -->
+      <genericcontrol name="icon_skills"><bounds rect="15,260,20,20" /><icon>action_option</icon></genericcontrol>
+      <label name="label_skills"><bounds rect="40,260,170,20" /><static text="Skill Rolls" /><tooltip text="Skill and psionic rolls (medic, pilot, telepathy, etc.)" /></label>
+      <buttoncontrol name="left_skills"><bounds rect="220,260,12,20" /><icon normal="arrow_sm_left" />
+        <script>function onButtonPress() window.ctrl.toggle("skills") end</script>
+      </buttoncontrol>
+      <stringcontrol name="state_skills"><bounds rect="236,260,40,20" /><font>sheettext</font><static text="Off" /></stringcontrol>
+      <buttoncontrol name="right_skills"><bounds rect="280,260,12,20" /><icon normal="arrow_sm_right" />
+        <script>function onButtonPress() window.ctrl.toggle("skills") end</script>
+      </buttoncontrol>
+
+      <!-- Task Results (y=292) -->
+      <genericcontrol name="icon_tasks"><bounds rect="15,292,20,20" /><icon>action_option</icon></genericcontrol>
+      <label name="label_tasks"><bounds rect="40,292,170,20" /><static text="Task Results" /><tooltip text="Success / failure, hit / miss result sounds" /></label>
+      <buttoncontrol name="left_tasks"><bounds rect="220,292,12,20" /><icon normal="arrow_sm_left" />
+        <script>function onButtonPress() window.ctrl.toggle("tasks") end</script>
+      </buttoncontrol>
+      <stringcontrol name="state_tasks"><bounds rect="236,292,40,20" /><font>sheettext</font><static text="Off" /></stringcontrol>
+      <buttoncontrol name="right_tasks"><bounds rect="280,292,12,20" /><icon normal="arrow_sm_right" />
+        <script>function onButtonPress() window.ctrl.toggle("tasks") end</script>
+      </buttoncontrol>
+
+      <!-- ============================================================
+           Footer buttons: Enable All | Disable All | Refresh
+           ============================================================ -->
+      <buttoncontrol name="btn_enable_all">
+        <bounds rect="20,340,90,25" />
+        <tooltip text="Enable all sound categories" />
+        <normal text="Enable All" />
+        <script>function onButtonPress() window.ctrl.enableAll() end</script>
+      </buttoncontrol>
+
+      <buttoncontrol name="btn_disable_all">
+        <bounds rect="120,340,90,25" />
+        <tooltip text="Disable all sound categories" />
+        <normal text="Disable All" />
+        <script>function onButtonPress() window.ctrl.disableAll() end</script>
+      </buttoncontrol>
+
+      <buttoncontrol name="btn_refresh">
+        <bounds rect="220,340,90,25" />
+        <tooltip text="Refresh from current state (use after chat commands)" />
+        <normal text="Refresh" />
+        <script>function onButtonPress() window.ctrl.refreshAll() end</script>
+      </buttoncontrol>
+
+    </sheetdata>
+  </windowclass>
+</root>

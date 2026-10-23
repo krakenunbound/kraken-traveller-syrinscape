@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<root>
+  <string name="kraken_traveller2e_syrin_name">Kraken Traveller 2E Syrinscape</string>
+
+  <!-- Options window (Settings > Options) -->
+  <string name="option_header_krakensyrin">Kraken Syrinscape</string>
+  <string name="option_label_KTSYON">Sound triggers</string>
+  <string name="option_label_KTSYHID">Hidden GM rolls</string>
+  <string name="option_label_KTSYDBG">Show trigger matches in chat</string>
+  <string name="option_label_KTSYC_SHIP">Sounds: ship combat</string>
+  <string name="option_label_KTSYC_COMMS">Sounds: initiative, ammo, morale, tactics</string>
+  <string name="option_label_KTSYC_WEAPONS">Sounds: personal weapons</string>
+  <string name="option_label_KTSYC_DAMAGE">Sounds: damage, armour, mishaps</string>
+  <string name="option_label_KTSYC_STATUS">Sounds: wounds, fire, radiation, healing</string>
+  <string name="option_label_KTSYC_SKILLS">Sounds: skill and psionic rolls</string>
+  <string name="option_label_KTSYC_TASKS">Sounds: success / failure, hit / miss</string>
+  <string name="option_label_KTSYDMG">Damage roll sound</string>
+  <string name="option_label_KTSYHM">Attack result sound</string>
+  <string name="option_label_KTSYRES">Skill result sounds</string>
+  <string name="option_label_KTSYWND">Wound and death sounds</string>
+  <string name="option_label_KTSYINIT">Initiative sound</string>
+  <string name="option_label_KTSYRNG">Ship range warnings (Close / Adjacent)</string>
+  <string name="option_label_KTSYPSI">Psionic sounds</string>
+  <string name="option_label_KTSYHEAL">Healing sound</string>
+  <string name="option_label_KTSYREP">Same sound again after</string>
+  <string name="option_label_KTSYMSG">Startup message in chat</string>
+
+  <string name="option_val_ktsy_silent">Silent</string>
+  <string name="option_val_ktsy_combat">Combat only</string>
+  <string name="option_val_ktsy_all">All</string>
+  <string name="option_val_ktsy_weapon">Weapon</string>
+  <string name="option_val_ktsy_impact">Impact</string>
+  <string name="option_val_ktsy_both">Both</string>
+  <string name="option_val_ktsy_hitmiss">Hit and miss</string>
+  <string name="option_val_ktsy_hitonly">Hit only</string>
+  <string name="option_val_ktsy_missonly">Miss only</string>
+  <string name="option_val_ktsy_allresults">All</string>
+  <string name="option_val_ktsy_exceptional">Exceptional only</string>
+  <string name="option_val_ktsy_successes">Successes only</string>
+  <string name="option_val_ktsy_failures">Failures only</string>
+  <string name="option_val_ktsy_defib">Defibrillator</string>
+  <string name="option_val_ktsy_medkit">Medikit</string>
+  <string name="option_val_ktsy_1s">1 second</string>
+  <string name="option_val_ktsy_3s">3 seconds</string>
+  <string name="option_val_ktsy_5s">5 seconds</string>
+  <string name="option_val_ktsy_10s">10 seconds</string>
+</root>
