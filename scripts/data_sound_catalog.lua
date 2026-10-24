@@ -573,6 +573,10 @@ categories = {
 -- sound = "none" marks a line that must stay silent (matched, nothing played).
 ---------------------------------------------------------------------------
 triggers = {
+  -- Kraken Krits & Fumbles Traveller (0.7.1): Telling Shots and Firefight Fumbles
+  { id = "kraken_telling_shot",  pattern = "[kraken critical]",              plain = true,  sound = "explosion_destruction", cat = "damage" },
+  { id = "kraken_fumble",        pattern = "[kraken fumble]",                plain = true,  sound = "ammo_click",        cat = "comms" },
+
 
   -----------------------------------------------------------------------
   -- SHIP COMBAT  (highest priority – very specific tags)

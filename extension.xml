@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<root release="0.7.0" version="0.7.0">
+<root release="0.7.1" version="0.7.1">
   <properties>
     <name>Kraken Traveller 2E Syrinscape</name>
-    <version>0.7.0</version>
+    <version>0.7.1</version>
     <author>The Kraken</author>
     <description>Kraken-branded Syrinscape automation for the Traveller 2E Fantasy Grounds ruleset. 91 sci-fi sounds and 143 triggers across 7 toggleable categories: personal weapons, ship combat, damage impacts, wounds/status, skill rolls, task results, and communications. Every setting is in Options > Kraken Syrinscape (or /krakensyrin config for the category toggles). Type /krakensyrin help for all commands.</description>
     <loadorder>99</loadorder>
@@ -10,7 +10,7 @@
   </properties>
 
   <announcement>
-    <text>Kraken Traveller 2E Syrinscape v0.7.0</text>
+    <text>Kraken Traveller 2E Syrinscape v0.7.1</text>
     <font>systemfont</font>
   </announcement>
 

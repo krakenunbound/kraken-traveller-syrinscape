@@ -12,6 +12,11 @@
 | Weapon words in normal chat ("hit the club") | played sounds | silent; weapons play only on attack and damage rolls |
 | Tested | sample chat lines | real rolls in FGU and every sound recorded off the speakers |
 
+## 0.7.1 (2026-10-23)
+
+- Sounds for the new **Kraken Krits & Fumbles Traveller** extension: a Telling Shot (boxcars) plays the
+  destruction explosion (Damage Impacts), a Firefight Fumble (snake eyes) the empty click (Communications).
+
 ## 0.7.0 (2026-10-23)
 
 - **Every setting is in the Options window**, in its own **Kraken Syrinscape** group, so the GM makes the call. Saved with the campaign.

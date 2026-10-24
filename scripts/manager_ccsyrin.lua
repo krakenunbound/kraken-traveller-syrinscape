@@ -774,6 +774,6 @@ function onTabletopInit()
     AgentBridge.registerPackage("CCSyrin", CCSyrin)
   end
   if not OptionsManager.isOption(OPT_STARTUP, "no") then
-    postChat("[Kraken Traveller 2E] v0.7.0 loaded. Settings: Options > Kraken Syrinscape. Commands: /krakensyrin help")
+    postChat("[Kraken Traveller 2E] v0.7.1 loaded. Settings: Options > Kraken Syrinscape. Commands: /krakensyrin help")
   end
 end
